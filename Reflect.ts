@@ -1,3 +1,14 @@
+// deno-fmt-ignore-file
+// deno-lint-ignore-file no-namespace no-explicit-any ban-types
+
+/**
+ * This file was copied from https://github.com/rbuckton/reflect-metadata/blob/v0.1.12/Reflect.ts
+ * and slightly modified to fix all type errors that Deno reported.
+ *
+ * Additionally, the `export` keyword was added to the `Reflect` namespace to
+ * be actually able to import and use the module in Deno.
+ */
+
 /*! *****************************************************************************
 Copyright (C) Microsoft. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use
@@ -12,7 +23,7 @@ MERCHANTABLITY OR NON-INFRINGEMENT.
 See the Apache Version 2.0 License for specific language governing permissions
 and limitations under the License.
 ***************************************************************************** */
-namespace Reflect {
+export namespace Reflect {
   // Metadata Proposal
   // https://rbuckton.github.io/reflect-metadata/
 
@@ -669,8 +680,8 @@ namespace Reflect {
               : <V>(map: HashMap<V>, key: string | number | symbol) => key in map,
 
           get: downLevel
-              ? <V>(map: HashMap<V>, key: string | number | symbol): V | undefined => hasOwn.call(map, key) ? map[key as string | number] : undefined
-              : <V>(map: HashMap<V>, key: string | number | symbol): V | undefined => map[key as string | number],
+              ? <V>(map: HashMap<V>, key: string | number | symbol): V | undefined => hasOwn.call(map, key) ? map[key as any] : undefined
+              : <V>(map: HashMap<V>, key: string | number | symbol): V | undefined => map[key as any],
       };
 
       // Load global or shim versions of Map, Set, and WeakMap
@@ -727,7 +738,7 @@ namespace Reflect {
        *             Object.getOwnPropertyDescriptor(Example.prototype, "method")));
        *
        */
-      function decorate(decorators: (ClassDecorator | MemberDecorator)[], target: any, propertyKey?: string | symbol, attributes?: PropertyDescriptor | null): PropertyDescriptor | Function | undefined {
+      function decorate(decorators: (ClassDecorator | MemberDecorator | MethodDecorator)[], target: any, propertyKey?: string | symbol, attributes?: PropertyDescriptor | null): PropertyDescriptor | Function | undefined {
           if (!IsUndefined(propertyKey)) {
               if (!IsArray(decorators)) throw new TypeError();
               if (!IsObject(target)) throw new TypeError();
