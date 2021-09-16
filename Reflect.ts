@@ -104,7 +104,6 @@ interface WeakMapConstructor {
 }
 
 type MemberDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor?: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
-declare const Symbol: { iterator: symbol, toPrimitive: symbol };
 declare const Set: SetConstructor;
 declare const WeakMap: WeakMapConstructor;
 declare const Map: MapConstructor;
