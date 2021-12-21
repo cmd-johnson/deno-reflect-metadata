@@ -7,7 +7,7 @@ Check out the [Source Repository](https://github.com/rbuckton/reflect-metadata) 
 ## Example usage
 
 ```ts
-import { Reflect } from "https://deno.land/x/reflect_metadata@v0.1.12/mod.ts";
+import { Reflect } from "https://deno.land/x/reflect_metadata@v0.1.12-2/mod.ts";
 
 // deno-lint-ignore no-explicit-any
 type Constructor<T = unknown> = new (...args: any[]) => T;
