@@ -1358,6 +1358,18 @@ export namespace Reflect {
         }
     }
 
+      // 6.1 ECMAScript Language Types
+    // https://tc39.github.io/ecma262/#sec-ecmascript-language-types
+    const enum Tag {
+        Undefined,
+        Null,
+        Boolean,
+        String,
+        Symbol,
+        Number,
+        Object
+    }
+
     // 6 ECMAScript Data Typ0es and Values
     // https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values
     function Type(x: any): Tag {
@@ -1371,18 +1383,6 @@ export namespace Reflect {
             case "object": return x === null ? Tag.Null : Tag.Object;
             default: return Tag.Object;
         }
-    }
-
-    // 6.1 ECMAScript Language Types
-    // https://tc39.github.io/ecma262/#sec-ecmascript-language-types
-    const enum Tag {
-        Undefined,
-        Null,
-        Boolean,
-        String,
-        Symbol,
-        Number,
-        Object
     }
 
     // 6.1.1 The Undefined Type
