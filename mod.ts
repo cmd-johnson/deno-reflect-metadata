@@ -1,1 +1,1 @@
-export { Reflect } from "./Reflect.ts";
+export * as Reflect from "./Reflect.ts";
