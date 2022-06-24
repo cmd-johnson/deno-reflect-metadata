@@ -29,11 +29,6 @@ and limitations under the License.
 // Metadata Proposal
 // https://rbuckton.github.io/reflect-metadata/
 
-type IteratorResult<T> = { value: T; done: false } | {
-  value: never;
-  done: true;
-};
-
 type MemberDecorator = <T>(
   target: Object,
   propertyKey: string | symbol,
@@ -1051,13 +1046,15 @@ function GetIterator<T>(obj: Iterable<T>): Iterator<T> {
 
 // 7.4.4 IteratorValue(iterResult)
 // https://tc39.github.io/ecma262/2016/#sec-iteratorvalue
-function IteratorValue<T>(iterResult: IteratorResult<T>): T {
+function IteratorValue<T>(iterResult: IteratorYieldResult<T>): T {
   return iterResult.value;
 }
 
 // 7.4.5 IteratorStep(iterator)
 // https://tc39.github.io/ecma262/#sec-iteratorstep
-function IteratorStep<T>(iterator: Iterator<T>): IteratorResult<T> | false {
+function IteratorStep<T>(
+  iterator: Iterator<T>,
+): IteratorYieldResult<T> | false {
   const result = iterator.next();
   return result.done ? false : result;
 }
