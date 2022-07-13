@@ -12,5 +12,6 @@ class Example {
   constructor(a: string, b: number, c: Example) {}
 }
 
-console.log(Reflect.getMetadata("design:paramtypes", Example));
+const metadata = Reflect.getMetadata("design:paramtypes", Example);
+console.log(metadata);
 // "[ [Function: String], [Function: Number], [Function: Example] ]"
